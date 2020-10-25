@@ -20,11 +20,10 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
 
 ## Eindgesprek (week 7/8)
 
--dit ging goed & dit was lastig-
 Ten opzichte van voortgang 3 toch nog een tevreden eindresultaat neergezet. JavaScript blijft moeilijk en een punt van frustratie, maar CSS daarentegen ging erg goed en vond ik leuk om te doen. Procesmatig in de herfstvakantie gewerkt met raadpleging van eerder gegeven lessen en CodePen + bronnen.
 
 
-![ScreenShot](/images/Final_results_screenshots.png)
+![ScreenShot](./images/Final_results_screenshots.png)
 
 
 
