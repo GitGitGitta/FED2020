@@ -1,0 +1,816 @@
+/* CSS Document */
+
+/* 
+Vak: Frontend Development (FED)
+Blok: B1 WEB
+Docent: Vasilis van Gemert
+
+Student: Gitta Schermer
+Nummer: 500745803
+
+Datum: 26 - 10 - 2020
+*/
+
+/* 
+
+CSS bronnen gebruikt:
+1. https://www.w3schools.com/css/css_positioning.asp    ---   Naslagwerk voor het positioneren van elementen 
+2. https://www.w3schools.com/css/css_pseudo_classes.asp ---   Welke pseudo-classes zijn er allemaal? Hoe kan ik ze gebruiken?
+3. https://www.w3schools.com/css/css_combinators.asp    ---   Hoe spreek je CSS combinaties het beste aan?
+4. https://codepen.io                                   ---   Voor inspirerende voorbeelden en zien hoe anderen bepaalde code hebben geschreven
+
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 
+
+CSS RESET END
+> Vanaf hier code geschreven door Gitta Schermer
+
+*/
+
+*,
+*::after,
+*::before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.15;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    text-shadow: none;
+    background-color: rgba(181, 197, 197, .6);
+}
+
+section {
+    display: block;
+}
+
+
+/* Header & nav bar */
+
+header {
+    position: fixed;
+    top: 0;
+    z-index: 200;
+    width: 100%;
+    background-color: white;
+}
+
+header .main-navigation {
+    width: 100%;
+    padding: 2em 7%;
+    background-color: white;
+    -webkit-box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 6px 1px rgba(0, 0, 0, 0.05);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+header .main-navigation svg {
+    height: 1.6em;
+}
+
+header .hamburger {
+    display: inline-block;
+    z-index: 400;
+}
+
+header .drop-down {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.drop-down > p:first-child {
+    font-family: 'Times New Roman';
+    font-weight: 100;
+    font-size: 26px;
+    letter-spacing: .1em;
+    width: 100%;
+    text-align: center;
+    background-color: #bcc7c4;
+    padding: 1.6em 7%;
+
+    transition: .1s color ease-in;
+}
+
+.drop-down > p:first-child:hover {
+    color: #d2d4c9;
+}
+
+.drop-down a {
+    display: flex;
+    color: #000;
+    text-decoration: none;
+    padding: 3em 7%;
+    font-family: 'Helvetica';
+    letter-spacing: 0.06em;
+    font-weight: 600;
+
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(192, 196, 174, .4);
+
+    transition: .1s color ease-in;
+}
+
+.drop-down a:hover {
+    color: #ce755a;
+}
+
+.drop-down {
+    z-index: 3;
+    transition: .5s transform ease-in;
+    transform: translateY(-40em);
+}
+
+span.uitgeklapt {
+    transition: .5s transform ease-in;
+    transform: translateY(0);
+}
+
+
+/*Vormgeving + animaties hamburger menu.*/
+
+header input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: 1.6em;
+    left 0;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 3;
+}
+
+
+/*ik wil dat de span elementen zichtbaar zijn*/
+.hamburger span {
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background-color: #000;
+    z-index: 1;
+    transform-origin: 2px 1px;
+    border-radius: 10em;
+    transition: transform 0.5s ease-in,
+    background 0.5s ease-in,
+    opacity 0.55s ease;
+}
+
+.hamburger input:checked ~ span {
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    opacity 0.55s ease;
+}
+
+/* Als ik op het hamburger-menu klik wil ik dat de streepjes een kruisje vormen */
+
+.hamburger input:checked ~ span:nth-child(2) {
+    transform: rotate(45deg) translate(-2px, -1px);
+}
+
+
+/*Het middelste streepje wil ik laten verdwijnen*/
+
+.hamburger input:checked ~ span:nth-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*Het laatste streepje draait ook en maakt het kruisje af*/
+
+.hamburger input:checked ~ span:nth-child(4) {
+    transform: rotate(-45deg) translate(0, -2px);
+}
+
+
+/*vormgeving winkelwagentje */
+
+header .cart {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #ce755a;
+    border-radius: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-line-pack: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    z-index: 5;
+}
+
+
+header .cart a {
+    color: #ce755a;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    z-index: 11;
+}
+
+
+/*main*/
+
+main {
+    position: relative;
+    background-color: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+    
+}
+
+img {
+    width: 100%
+}
+
+
+/* het hero-blokje */
+
+.hero-image {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+    height: 90vh;
+    width: 100%;
+    overflow: hidden;
+    font-size: 25px;
+}
+
+.hero-image img {
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.hero-image .inner-content {
+    position: absolute;
+    left: 1em;
+    bottom: 2em;
+}
+
+.hero-image h1,
+.hero-image p {
+    line-height: 1.24em;
+    display: block;
+}
+
+.hero-image h1 {
+    font-weight: 600;
+    letter-spacing: .03em;
+}
+
+.hero-image p {
+    font-weight: 500;
+    font-family: "Times new Roman", Georgia, serif;
+    letter-spacing: .03em;
+}
+
+/*content kolommen links & rechts*/
+
+.featured-posts {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    padding: 10.41667vw 0vw 0vw;
+    position: relative;
+    background-color: white;
+}
+
+
+.featured-posts .left-column,
+.featured-posts .right-column {
+    padding: 0 4% 0 4%;
+}
+
+.featured-posts .left-column {
+    border-right: solid 1px #c0c4ae;
+}
+
+.featured-posts .inner-content img:first-of-type {
+    margin-bottom: 8%;
+}
+
+.inner-content {
+    font-size: 1em;
+    line-height: 1.21053em;
+    letter-spacing: .02em;
+}
+
+.inner-content h3,
+.inner-content h4 {
+    display: inline;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+h3:hover {
+    color: #ce755a;
+    -webkit-transition: .2s color ease;
+    transition: .2s color ease;
+    cursor: pointer;
+}
+
+h3 a {
+    text-decoration: none;
+    color: #000;
+}
+
+h3 a:hover {
+    color: #ce755a;
+    -webkit-transition: .2s color ease;
+    transition: .2s color ease;
+}
+
+h4 {
+    font-family: "Times new Roman", serif;
+    color: #606060;
+    font-size: 17px;
+}
+
+.featured-posts .inner-content p:first-of-type {
+    margin-top: 6%;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.53846em;
+}
+
+.like-icons {
+    margin: 1em 0 6em 0;
+    position: relative;
+}
+
+.like-icons img {
+    position: absolute;
+    margin-bottom: 0;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.card-icon-dark {
+    position: absolute;
+    left: 18px;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-color: #696969;
+    z-index: 2;
+
+}
+
+.card-icon-light {
+    position: absolute;
+    left: 36px;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-color: #ccc;
+    z-index: 1;
+
+
+}
+
+.like-icons p {
+    position: absolute;
+    left: 84px;
+}
+
+
+/*Het derde contentblokje, de USP*/
+
+.usp-home {
+    width: 100%;
+    padding: 5em 10%;
+    background-color: white;
+    text-align: center;
+}
+
+.usp-home h2 {
+    font-size: 1.5em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+h2 span {
+    font-family: arial;
+    font-size: 2em;
+    line-height: 1em;
+    font-weight: 800;
+    padding: 25px 0px 20px;
+    text-transform: uppercase;
+    -webkit-transform: translateY(2.70449%) skewY(-25deg) scaleX(1);
+    transform: translateY(2.70449%) skewY(-25deg) scaleX(1);
+}
+
+.usp-home p {
+    display: inline;
+    font-size: 20px;
+    letter-spacing: .02em;
+}
+
+.usp-home p:first-of-type {
+    font-weight: 800;
+}
+
+.usp-home p:last-of-type {
+    font-family: "Times new Roman", serif;
+    color: #606060;
+}
+
+
+/* Community page css */
+article {
+    width: 100%;
+    padding: 9em 7% 4em 7%;
+    letter-spacing: .02em;
+}
+
+/* Content in de hero */
+
+.breadcrumb * {
+
+    color: #ce755a;
+    -webkit-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    padding-right: 2em;
+}
+
+.article-header h1 {
+    font-size: 35px;
+    font-weight: 800;
+    margin: 1em 0;
+}
+
+.author {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+.author img {
+    width: 28px;
+    height: 28px;
+    border-radius: 100%;
+    margin-right: 1em;
+}
+
+.author-details {
+    height: 28px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.author-details h6 {
+    font-size: 14px;
+    font-weight: 600;
+    padding-bottom: .02em;
+
+}
+
+.author-details p {
+    font-size: 10px;
+    -ms-flex-item-align: baseline;
+    align-self: baseline;
+}
+
+p.caption {
+    font-size: 11px;
+    padding: 1em 0;
+}
+
+.article-icons {
+    padding: 3em 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #c0c4ae;
+}
+
+.article-icons img {
+    width: 28px;
+    height: 28px;
+    margin-right: 1em;
+}
+
+.article-icons p {
+    margin-right: 3em;
+}
+
+.article-icons p:last-of-type {
+    margin: 0;
+}
+
+article h2 {
+    font-family: "Times new Roman", serif;
+    font-size: 25px;
+    line-height: 1.28em;
+    padding: 3em 0 1em 0;
+}
+
+article h3 {
+    font-size: 16px;
+    padding: 3em 0 1em 0;
+
+}
+
+article p {
+    padding-bottom: 1em;
+    line-height: 1.5em;
+}
+
+article a {
+    color: #000;
+    cursor: pointer;
+
+}
+
+article .intro p:nth-of-type(2) {
+    font-style: italic;
+}
+
+article h3:hover {
+    color: #000;
+    cursor: default;
+}
+
+
+/* Vanaf hier vormgeving voor de slider */
+
+.slider-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.slider-container img {
+    height: 500px;
+    width: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.slider-dots {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 2em 40%;
+
+}
+
+.slider-dots li {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 100%;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.slider-dots li:hover {
+    cursor: pointer;
+    background-color: #696969;
+}
+
+.slider-dots .dot-selected {
+    background-color: #696969;
+
+}
+
+.slider-dots .dot-selected:hover {
+    cursor: default;
+}
+
+
+/* Footer */
+
+footer {
+    height: 150px;
+    font-family: Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: #f4f4f4;
+    line-height: 1.5em;
+    letter-spacing: 0.02em;
+    transition: .1s color ease-in;
+}
+
+footer p:first-child {
+    font-weight: 600;
+}
+
+footer:hover {
+    color: darkgrey;
+}
